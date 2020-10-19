@@ -1,5 +1,5 @@
 const http = require('http');
-const { getProducts, getProductById } = require('./controllers/productController')
+const { getProducts, getProductById, createProduct } = require('./controllers/productController')
 
 const server = http.createServer((req, res) => {
   // res.statusCode = 200;
@@ -7,12 +7,15 @@ const server = http.createServer((req, res) => {
   // res.write('<h1>Hello Vanilla Nodejs</h1>');
   // res.end()
 
-  if(req.url === '/api/products' && req.method === 'GET') {
+  if (req.url === '/api/products' && req.method === 'GET') {
     getProducts(req, res);
   }
   else if (req.url.match(/\/api\/products\/([0-9]+)/) && req.method === 'GET'){
     const id = req.url.split('/')[3];
     getProductById(req, res, id);
+  }
+  else if (req.url === '/api/products' && req.method === 'POST'){
+    createProduct(req, res);
   }
   else {
     res.writeHead(404, {'Content-Type': 'application/json'});

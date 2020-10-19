@@ -30,4 +30,10 @@ async function getProductById(req, res, id) {
   }
 }
 
-module.exports = { getProducts, getProductById }
+// @desc    Create product
+// @route   POST api/products
+async function createProduct(req, res) {
+
+}
+
+module.exports = { getProducts, getProductById, createProduct }
