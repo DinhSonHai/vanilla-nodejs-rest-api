@@ -21,7 +21,7 @@ function create(product) {
     const newProduct = {id: uuidv4(), ...product};
     products.push(newProduct);
     writeData('./data/products.json', products);
-    resolve(product);
+    resolve(newProduct);
   })
 }
 
