@@ -84,4 +84,23 @@ async function updateProduct(req, res, id) {
   }
 }
 
-module.exports = { getProducts, getProductById, createProduct, updateProduct }
+// @desc    Delete product by id
+// @route   DELETE api/products/:id
+async function deleteProductById(req, res, id) {
+  try {
+    const product = await Product.findById(id);
+    if(!product) {
+      res.writeHead(400, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify({msg: 'Product not found'}))
+    }
+    else {
+      await Product.remove(id);
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify({msg: `Product with id: ${id} is removed`}))
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+module.exports = { getProducts, getProductById, createProduct, updateProduct, deleteProductById }
