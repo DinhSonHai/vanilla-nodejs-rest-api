@@ -96,7 +96,7 @@ async function deleteProductById(req, res, id) {
     else {
       await Product.remove(id);
       res.writeHead(200, {'Content-Type': 'application/json'});
-      res.end(JSON.stringify({msg: `Product with id: ${id} is removed`}))
+      res.end(JSON.stringify({msg: `Product with id: ${id} is deleted`}))
     }
   } catch (error) {
     console.log(error)
